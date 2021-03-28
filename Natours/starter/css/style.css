@@ -7,17 +7,19 @@ Dark green: #28b485
 
 */
 
+
 /* No browser applied margin or padding */
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 /* Using inheritance */
 
-body{
+body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -26,56 +28,58 @@ body{
     padding: 30px;
 }
 
+
 /* vh = viewport height */
 
-.header{
+.header {
     height: 95vh;
-    background-image: linear-gradient(
-        to right bottom, 
-        rgba(126, 213, 111,0.8), 
-        rgba(40,100,131,0.8)), 
-        url(../img/hero.jpg);
+    background-image: linear-gradient( to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 131, 0.8)), url(../img/hero.jpg);
     background-size: cover;
     background-position: top;
     position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0% 100%);  
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0% 100%);
 }
 
-.logo-box{
+.logo-box {
     position: absolute;
     top: 40px;
     left: 40px;
 }
 
-.logo{
+.logo {
     height: 35px;
 }
 
+
 /* absolute position to element set to relative*/
 
-.text-box{
+.text-box {
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-.heading_primary{
-    color:#fff;
+.heading_primary {
+    color: #fff;
     text-transform: uppercase;
+    margin-bottom: 60px;
 }
+
 
 /* span elements display inline by default
 block elements cover the whole width 
 they have available and create a line break in between
 */
 
+
 /* keyframes at rule and animation property
 two types of animation
 change transition property and set what happens when you hover over
 */
 
-.heading-primary-main{
+.heading-primary-main {
     display: block;
     font-size: 60px;
     font-weight: 400;
@@ -83,23 +87,19 @@ change transition property and set what happens when you hover over
     animation-name: moveInLeft;
     animation-duration: 1s;
     animation-timing-function: ease-out;
-    
     /* determines whether the back of 
     an elemment is hidden or not 
     when rotating 180 degrees
     fixes shaking which 
     sometimes happens when animating*/
-    
     backface-visibility: hidden;
-    
     /*
     animation-delay: 3s;
     animation-iteration-count: 3;
     */
-       
 }
 
-.heading-primary-sub{
+.heading-primary-sub {
     display: block;
     font-size: 20px;
     font-weight: 700;
@@ -107,37 +107,126 @@ change transition property and set what happens when you hover over
     animation: moveInRight 1s ease-out;
 }
 
+
 /* best to only animate opacity and transform property*/
 
-@keyframes moveInLeft{
-    0%{
+@keyframes moveInLeft {
+    0% {
         opacity: 0;
         transform: translateX(-100px);
     }
-    
-    80%{
+    80% {
         transform: translateX(10px);
     }
-    
-    100%{
-       opacity: 1; 
-       transform: translate(0);
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    80% {
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
     }
 }
 
 
-@keyframes moveInRight{
-    0%{
-        opacity: 0;
-        transform: translateX(100px);
-    }
-    
-    80%{
-        transform: translateX(-10px);
-    }
-    
-    100%{
-       opacity: 1; 
-       transform: translate(0);
-    }
+/* link psuedoclass, e.g. select, hover over
+link is a special selector when its an anchor
+btn:visited is a link which has already been selected
+we want visited state to look exactly the same as normal */
+
+
+/* inline-blocks are treated as if they are text */
+
+
+/* using transition:all, all properties are enabled to be animated */
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+    position: relative;
+}
+
+
+/* in css y axis goes from top to bottom */
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+
+/* active psuedo class is when its clicked 
+ box shadow properties x direction, y direction, blur, color */
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+
+
+/* have to set some content, but can be empty
+also have to set display property 
+after psuedo element is treated as a child of the element
+absolute position is always relative to the first  element it finds with the position property relative*/
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+
+/* fourth argument in animation function is delay
+animation fill mode applies style of 0% before the animation starts */
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
 }
