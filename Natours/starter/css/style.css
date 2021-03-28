@@ -6,3 +6,138 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* No browser applied margin or padding */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Using inheritance */
+
+body{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    padding: 30px;
+}
+
+/* vh = viewport height */
+
+.header{
+    height: 95vh;
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba(126, 213, 111,0.8), 
+        rgba(40,100,131,0.8)), 
+        url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0% 100%);  
+}
+
+.logo-box{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.logo{
+    height: 35px;
+}
+
+/* absolute position to element set to relative*/
+
+.text-box{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.heading_primary{
+    color:#fff;
+    text-transform: uppercase;
+}
+
+/* span elements display inline by default
+block elements cover the whole width 
+they have available and create a line break in between
+*/
+
+/* keyframes at rule and animation property
+two types of animation
+change transition property and set what happens when you hover over
+*/
+
+.heading-primary-main{
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    
+    /* determines whether the back of 
+    an elemment is hidden or not 
+    when rotating 180 degrees
+    fixes shaking which 
+    sometimes happens when animating*/
+    
+    backface-visibility: hidden;
+    
+    /*
+    animation-delay: 3s;
+    animation-iteration-count: 3;
+    */
+       
+}
+
+.heading-primary-sub{
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+    animation: moveInRight 1s ease-out;
+}
+
+/* best to only animate opacity and transform property*/
+
+@keyframes moveInLeft{
+    0%{
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    
+    80%{
+        transform: translateX(10px);
+    }
+    
+    100%{
+       opacity: 1; 
+       transform: translate(0);
+    }
+}
+
+
+@keyframes moveInRight{
+    0%{
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    
+    80%{
+        transform: translateX(-10px);
+    }
+    
+    100%{
+       opacity: 1; 
+       transform: translate(0);
+    }
+}
